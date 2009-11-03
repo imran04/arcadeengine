@@ -1,0 +1,23 @@
+
+uniform sampler2D texture;
+uniform vec2 mouse;
+
+int delta = 100;
+
+void main (void)
+{
+	vec2 coord = gl_TexCoord[0];
+	vec4 Color = texture2D(texture, coord);
+	
+	if (distance(mouse, gl_FragCoord) > delta)
+		discard;
+
+	if (distance(mouse, gl_FragCoord) > delta - 5)
+		Color.a /= 2.0;
+
+	if (distance(mouse, gl_FragCoord) > delta - 10)
+		Color.a /= 2.0;
+
+		
+	gl_FragColor = Color;	
+}
